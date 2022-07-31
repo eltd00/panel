@@ -24,10 +24,33 @@ class employee extends Controller
         return redirect()->back()->with(["success"=>"Saved successfully"]);
 
     }
-//    public function edit($id){
-//
-////        $employee = employee::find($id)->get();
-//        return "dd";
-//
-//    }
+    public function edit($employee_id){
+
+        $employee=\App\Models\Employee::find($employee_id);
+        if (!$employee)
+        {
+            return redirect()->back();
+        }
+        $employee=\App\Models\Employee::select('id','name','age','country')->find($employee_id);
+        return view('employee.edit',compact('employee'));
+        return $employee_id;
+    }
+    public function UpdateEmployee(employeeRequest $request ,$employee_id){
+        $employee=\App\Models\Employee::find($employee_id);
+        if(!$employee)
+        {
+            return redirect()->back();
+        }
+        $employee->update($request->all());
+        return redirect()->back()->with(['success'=>'edit was successful']);
+    }
+    public function DeleteEmployee($employee_id)
+    {
+        $employee = \App\Models\Employee::find($employee_id);
+        if (!$employee) {
+            return redirect()->back()->with(['error' => 'error']);;
+        }
+        $employee->where("id",$employee_id)->delete();
+        return redirect()->back()->with(['success' => 'delete was successful']);
+    }
 }

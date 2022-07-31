@@ -35,7 +35,10 @@ Route::group(['prefix' => '/employee'], function (){
     Route::get("/", [employee::class, 'showEmployee'])->name('employee.display');
     Route::get("/Add", [employee::class, 'addEmployee'])->name('add.employee');
     Route::post("/store", [employee::class, 'store'])->name("store.employee");
-//    Route::get("/edit/{employee_id}", [employee::class, 'edit'])->name('employee.edit');
+    Route::get("/edit/{employee_id}", [employee::class, 'edit'])->name('employee.edit');
+    Route::post("/update/{employee_id}", [employee::class, 'UpdateEmployee'])->name('update.employee');
+    Route::get("/delete/{employee_id}", [employee::class, 'DeleteEmployee'])->name('delete.employee');
+
 });
 
 ######End
