@@ -8,20 +8,27 @@
             <th scope="col">Name</th>
             <th scope="col">Age</th>
             <th scope="col">Country</th>
+            @can('update')
             <th>Operation</th>
+            @endcan
         </tr>
         </thead>
         <tbody>
+
         @foreach($employees as $employee)
         <tr>
             <th scope="row">{{$employee->id}}</th>
             <td>{{$employee->name}}</td>
             <td>{{$employee->age}}</td>
             <td>{{$employee->Country}}</td>
-            <td><a href="{{route("employee.edit",$employee->id)}}" class="btn btn-primary">Edit</a>
+            <td>
+                @can('update')
+                    <a href="{{route("employeeController.edit",$employee->id)}}" class="btn btn-primary">Edit</a>
+                @endcan
                 &nbsp;
-                <a href="{{route("delete.employee",$employee->id)}}" class="btn btn-danger">Delete</a></td>
-
+                @can('delete')
+                    <a href="{{route("delete.employeeController",$employee->id)}}" class="btn btn-danger">Delete</a></td>
+                @endcan
         </tr>
         @endforeach
         @if(session()->has("success"))
@@ -32,12 +39,14 @@
         @endif
         </tbody>
     </table>
+    @can('create')
     <div class="container">
         <div class="row">
             <div class="col text-center">
-                <a href="{{route("add.employee")}}" class="btn btn-secondary">Add User</a>
+                <a href="{{route("add.employeeController")}}" class="btn btn-secondary">Add User</a>
             </div>
         </div>
     </div>
+    @endcan
 
 @endsection

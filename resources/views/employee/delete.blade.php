@@ -38,7 +38,11 @@
                             @if(session()->has("success"))
                                 <div class="alert alert-danger">{{session()->get('success')}}</div>
                             @endif
+<<<<<<< HEAD
                             <form action="{{route("delete.employee", $employee->id)}}" method="post" class="justify-content-center" style="color:#000">
+=======
+                            <form action="{{route("delete.employeeController", $employee->id)}}" method="post" class="justify-content-center" style="color:#000">
+>>>>>>> 902a190 (adding employee and edit employee profiles and delete employee profiles)
                                 @csrf
                                 <div class="form-group">
                                     <label class="sr-only">Name</label>

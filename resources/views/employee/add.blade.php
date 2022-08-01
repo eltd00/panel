@@ -38,7 +38,7 @@
                             @if(session()->has("success"))
                             <div class="alert alert-success">{{session()->get('success')}}</div>
                             @endif
-                            <form action="{{route("store.employee")}}" method="post" class="justify-content-center" style="color:#000">
+                            <form action="{{route("store.employeeController")}}" method="post" class="justify-content-center" style="color:#000">
                                 @csrf
                                 <div class="form-group">
                                     <label class="sr-only">Name</label>

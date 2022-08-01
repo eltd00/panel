@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\employee;
+use \App\Http\Controllers\employeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +31,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 ######Routes Employee
-Route::group(['prefix' => '/employee'], function (){
-    Route::get("/", [employee::class, 'showEmployee'])->name('employee.display');
-    Route::get("/Add", [employee::class, 'addEmployee'])->name('add.employee');
-    Route::post("/store", [employee::class, 'store'])->name("store.employee");
-    Route::get("/edit/{employee_id}", [employee::class, 'edit'])->name('employee.edit');
-    Route::post("/update/{employee_id}", [employee::class, 'UpdateEmployee'])->name('update.employee');
-    Route::get("/delete/{employee_id}", [employee::class, 'DeleteEmployee'])->name('delete.employee');
+Route::group(['prefix' => '/employeeController'], function (){
+    Route::get("/", [employeeController::class, 'showEmployee'])->name('employeeController.display')->middleware(['can:read']);
+    Route::get("/Add", [employeeController::class, 'addEmployee'])->name('add.employeeController')->middleware(['can:create']);
+    Route::post("/store", [employeeController::class, 'store'])->name("store.employeeController")->middleware(['can:create']);
+    Route::get("/edit/{employee_id}", [employeeController::class, 'edit'])->name('employeeController.edit')->middleware(['can:update']);
+    Route::post("/update/{employee_id}", [employeeController::class, 'UpdateEmployee'])->name('update.employeeController')->middleware(['can:update']);
+    Route::get("/delete/{employee_id}", [employeeController::class, 'DeleteEmployee'])->name('delete.employeeController')->middleware(['can:delete']);
 
 });
 

@@ -34,7 +34,7 @@
                             <a class="nav-link" href="{{route('home')}}">Home</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{route('employee.display')}}">Employee</span></a>
+                            <a class="nav-link" href="{{route('employeeController.display')}}">Employee</span></a>
                         </li>
                     </ul>
 
